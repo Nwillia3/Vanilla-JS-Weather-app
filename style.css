@@ -1,0 +1,52 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  font-family: Helvetica;
+  height: 100vh;
+}
+
+.city {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 10px;
+}
+
+.days {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  padding: 10px;
+}
+
+.forecast {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.temp {
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
+}
+
+.box {
+  margin: 15px;
+}
+
+.day {
+  background-color: #6666ff;
+  color: white;
+  font-size: 20px;
+}
+
+.icon {
+  margin-right: 10px;
+}
