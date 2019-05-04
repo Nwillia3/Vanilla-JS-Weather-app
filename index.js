@@ -30,36 +30,44 @@ let getUrlParams = () => {
   return query;
 };
 
+// global variable
+let result = {};
+
 // query Zip Code
 let queryZipCode = async () => {
   console.log("this should be second");
 
   let params = getUrlParams();
   console.log(params);
-  let url = `http://dataservice.accuweather.com/locations/v1/postalcodes/search?apikey=${apiKey5}&q=${
+  let url = `http://dataservice.accuweather.com/locations/v1/postalcodes/search?apikey=${apiKey3}&q=${
     params.zip
   }`;
 
   // wrap in a if statement to execute if there are params
   let data = await (await fetch(`${proxy}${url}`)).json();
   //   console.log(data);
-  return data[0].Key;
+
+  return (result = { code: data[0].Key, city: data[0].LocalizedName });
 };
 
 let changeAPI = async () => {
   console.log("this should be third");
 
   const key = await queryZipCode();
+  console.log(key);
   const api = `${proxy}
-http://dataservice.accuweather.com/forecasts/v1/daily/5day/${key}?apikey=${apiKey5}
+http://dataservice.accuweather.com/forecasts/v1/daily/5day/${
+    key.code
+  }?apikey=${apiKey3}
 `;
-  console.log(api);
+  //   console.log(api);
   return api;
 };
 
 // fake data for now
 let getData = async () => {
   console.log("this should be four");
+  console.log(result);
   let queryDate;
   let api = await changeAPI();
   let query = await getUrlParams();
@@ -76,45 +84,45 @@ let getData = async () => {
     .then(data => {
       //   console.log(data);
       let output;
+      let todayDate = new Date();
 
       const { DailyForecasts } = data;
       DailyForecasts.forEach(temp => {
         let forecastDate = new Date(temp.Date);
+        console.log(forecastDate);
+        if (queryDate.getDay() < todayDate.getDate()) {
+          output = "";
+          console.log(queryDate, todayDate);
+        } else if (queryDate <= forecastDate) {
+          console.log(queryDate.getDay(), todayDate.getDay());
 
-        if (queryDate <= forecastDate) {
           output += `
-            <div class="days">
             <div class="forecast">
-              <div class="box">
-    
-                <span class="day"> 
-                
-                    ${findDate(temp.Date)}
-                
-                </span>
-                <div class="temp">
-                  <span class="icon">
-                  <img src='https://apidev.accuweather.com/developers/Media/Default/WeatherIcons/${
-                    parseInt(temp.Day.Icon) < 10
-                      ? "0" + temp.Day.Icon
-                      : temp.Day.Icon
-                  }-s.png'</span>
-                  <div class="temp-details">
-                    <h2 class="summary">${temp.Day.IconPhrase}</h2>
-                    <div class="temperature">
-                      <span class="high">${
-                        temp.Temperature.Maximum.Value
-                      }</span> /
-                      <span class="low">${temp.Temperature.Minimum.Value}</span>
-                      F
+                <div class="box">
+                    <span class="day"> ${findDate(temp.Date)}  </span>    
+                    <div class="temp">
+                        <span class="icon">
+                        <img src='https://apidev.accuweather.com/developers/Media/Default/WeatherIcons/${
+                          parseInt(temp.Day.Icon) < 10
+                            ? "0" + temp.Day.Icon
+                            : temp.Day.Icon
+                        }-s.png'</span>
+                        <div class="temp-details">
+                            <h2 class="summary">${temp.Day.IconPhrase}</h2>
+                            <div class="temperature">
+                                <span class="high">${
+                                  temp.Temperature.Maximum.Value
+                                }</span> /
+                                <span class="low">${
+                                  temp.Temperature.Minimum.Value
+                                }</span>
+                                F
+                            </div>
+                        </div>
                     </div>
-                  </div>
                 </div>
-              </div>
             </div>
             `;
-        } else if (query.date === undefined) {
-          console.log("time us up");
         }
       });
       document.querySelector(".days").innerHTML = output;
