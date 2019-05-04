@@ -1,0 +1,140 @@
+{
+  "Headline": {},
+  "DailyForecasts": [
+    {
+      "Date": "2019-05-01T07:00:00-04:00",
+      "EpochDate": 1556708400,
+      "Temperature": {
+        "Minimum": {
+          "Value": 49,
+          "Unit": "F",
+          "UnitType": 18
+        },
+        "Maximum": {
+          "Value": 54,
+          "Unit": "F",
+          "UnitType": 18
+        }
+      },
+      "Day": {
+        "Icon": 18,
+        "IconPhrase": "Rain"
+      },
+      "Night": {
+        "Icon": 7,
+        "IconPhrase": "Cloudy"
+      },
+      "Sources": ["AccuWeather"],
+      "MobileLink": "http://m.accuweather.com/en/us/brooklyn-ny/11210/daily-weather-forecast/4117_pc?lang=en-us",
+      "Link": "http://www.accuweather.com/en/us/brooklyn-ny/11210/daily-weather-forecast/4117_pc?lang=en-us"
+    },
+    {
+      "Date": "2019-05-02T07:00:00-04:00",
+      "EpochDate": 1556794800,
+      "Temperature": {
+        "Minimum": {
+          "Value": 51,
+          "Unit": "F",
+          "UnitType": 18
+        },
+        "Maximum": {
+          "Value": 73,
+          "Unit": "F",
+          "UnitType": 18
+        }
+      },
+      "Day": {
+        "Icon": 16,
+        "IconPhrase": "Mostly cloudy w/ t-storms"
+      },
+      "Night": {
+        "Icon": 15,
+        "IconPhrase": "Thunderstorms"
+      },
+      "Sources": ["AccuWeather"],
+      "MobileLink": "http://m.accuweather.com/en/us/brooklyn-ny/11210/daily-weather-forecast/4117_pc?day=1&lang=en-us",
+      "Link": "http://www.accuweather.com/en/us/brooklyn-ny/11210/daily-weather-forecast/4117_pc?day=1&lang=en-us"
+    },
+    {
+      "Date": "2019-05-03T07:00:00-04:00",
+      "EpochDate": 1556881200,
+      "Temperature": {
+        "Minimum": {
+          "Value": 56,
+          "Unit": "F",
+          "UnitType": 18
+        },
+        "Maximum": {
+          "Value": 60,
+          "Unit": "F",
+          "UnitType": 18
+        }
+      },
+      "Day": {
+        "Icon": 15,
+        "IconPhrase": "Thunderstorms"
+      },
+      "Night": {
+        "Icon": 12,
+        "IconPhrase": "Showers"
+      },
+      "Sources": ["AccuWeather"],
+      "MobileLink": "http://m.accuweather.com/en/us/brooklyn-ny/11210/daily-weather-forecast/4117_pc?day=2&lang=en-us",
+      "Link": "http://www.accuweather.com/en/us/brooklyn-ny/11210/daily-weather-forecast/4117_pc?day=2&lang=en-us"
+    },
+    {
+      "Date": "2019-05-04T07:00:00-04:00",
+      "EpochDate": 1556967600,
+      "Temperature": {
+        "Minimum": {
+          "Value": 53,
+          "Unit": "F",
+          "UnitType": 18
+        },
+        "Maximum": {
+          "Value": 68,
+          "Unit": "F",
+          "UnitType": 18
+        }
+      },
+      "Day": {
+        "Icon": 13,
+        "IconPhrase": "Mostly cloudy w/ showers"
+      },
+      "Night": {
+        "Icon": 40,
+        "IconPhrase": "Mostly cloudy w/ showers"
+      },
+      "Sources": ["AccuWeather"],
+      "MobileLink": "http://m.accuweather.com/en/us/brooklyn-ny/11210/daily-weather-forecast/4117_pc?day=3&lang=en-us",
+      "Link": "http://www.accuweather.com/en/us/brooklyn-ny/11210/daily-weather-forecast/4117_pc?day=3&lang=en-us"
+    },
+    {
+      "Date": "2019-05-05T07:00:00-04:00",
+      "EpochDate": 1557054000,
+      "Temperature": {
+        "Minimum": {
+          "Value": 49,
+          "Unit": "F",
+          "UnitType": 18
+        },
+        "Maximum": {
+          "Value": 59,
+          "Unit": "F",
+          "UnitType": 18
+        }
+      },
+      "Day": {
+        "Icon": 18,
+        "IconPhrase": "Rain"
+      },
+      "Night": {
+        "Icon": 35,
+        "IconPhrase": "Partly cloudy"
+      },
+      "Sources": ["AccuWeather"],
+      "MobileLink": "http://m.accuweather.com/en/us/brooklyn-ny/11210/daily-weather-forecast/4117_pc?day=4&lang=en-us",
+      "Link": "http://www.accuweather.com/en/us/brooklyn-ny/11210/daily-weather-forecast/4117_pc?day=4&lang=en-us"
+    }
+  ]
+}
