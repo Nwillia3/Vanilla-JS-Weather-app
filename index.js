@@ -47,7 +47,11 @@ let queryZipCode = async () => {
   let data = await (await fetch(`${proxy}${url}`)).json();
   //   console.log(data);
 
-  return (result = { code: data[0].Key, city: data[0].LocalizedName });
+  let cityValues = {
+    cityToken: data[0].Key,
+    cityName: data[0].LocalizedName
+  };
+  return cityValues;
 };
 
 let changeAPI = async () => {
@@ -57,7 +61,7 @@ let changeAPI = async () => {
   console.log(key);
   const api = `${proxy}
 http://dataservice.accuweather.com/forecasts/v1/daily/5day/${
-    key.code
+    key.cityToken
   }?apikey=${apiKey3}
 `;
   //   console.log(api);
@@ -71,6 +75,8 @@ let getData = async () => {
   let queryDate;
   let api = await changeAPI();
   let query = await getUrlParams();
+  let cityName = await queryZipCode();
+  console.log(cityName);
   console.log(typeof query.date);
   if (query.date === "") {
     queryDate = new Date();
