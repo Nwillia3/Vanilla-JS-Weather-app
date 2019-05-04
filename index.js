@@ -84,6 +84,7 @@ let getData = async () => {
     .then(data => {
       //   console.log(data);
       let output;
+      let header;
       let todayDate = new Date();
 
       const { DailyForecasts } = data;
@@ -92,9 +93,18 @@ let getData = async () => {
         console.log(forecastDate);
         if (queryDate.getDay() < todayDate.getDate()) {
           output = "";
+          header = "";
           console.log(queryDate, todayDate);
         } else if (queryDate <= forecastDate) {
-          console.log(queryDate.getDay(), todayDate.getDay());
+          header = `
+            <div class="container">
+                <div class="city">
+                    <h1 class="city-name">
+                    WEATHER FORECAST FOR 
+                    <span> ${cityName.cityName}</span>
+                    </h1>
+                </div>
+            </div>`;
 
           output += `
             <div class="forecast">
@@ -126,6 +136,7 @@ let getData = async () => {
         }
       });
       document.querySelector(".days").innerHTML = output;
+      document.querySelector(".city").innerHTML = header;
     })
     .catch(err => console.log(err));
 };
