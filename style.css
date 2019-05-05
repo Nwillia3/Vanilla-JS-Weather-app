@@ -48,5 +48,21 @@ body {
 }
 
 .icon {
+  display: flex;
+}
+.icon img {
   margin-right: 10px;
+}
+
+.summary {
+  font-size: 14px;
+}
+
+.high,
+.low {
+  font-size: 14px;
+}
+
+.high {
+  font-weight: bold;
 }
