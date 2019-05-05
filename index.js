@@ -44,12 +44,11 @@ class WeatherApp {
     return cityValues;
   };
 
-  dataApi = async () => {
+  getForecastApi = async () => {
     const key = await this.getCityValues();
-    const api = `${proxy}
-      http://dataservice.accuweather.com/forecasts/v1/daily/5day/${
-        key.cityToken
-      }?apikey=${apiKey3}
+    const api = `${proxy}http://dataservice.accuweather.com/forecasts/v1/daily/5day/${
+      key.cityToken
+    }?apikey=${apiKey2}
       `;
     return api;
   };
@@ -57,10 +56,11 @@ class WeatherApp {
   //fetches the Data and display
   getData = async () => {
     //   fetch(api)
-    // let api = await this.dataApi();
+    let api = await this.getForecastApi();
 
-    let res = await fetch("data.json");
-    let data = res.json();
+    let res = await fetch(api);
+    let data = await res.json();
+    console.log(data);
 
     return data;
   };
@@ -69,6 +69,7 @@ class WeatherApp {
     let queryDate;
     let query = await this.getUrlParams();
     let cityName = await this.getCityValues();
+    console.log(typeof query.date);
     if (query.date === "") {
       queryDate = new Date();
     } else {
@@ -81,14 +82,15 @@ class WeatherApp {
     let todayDate = new Date();
 
     const { DailyForecasts } = data;
-    try {
-      DailyForecasts.forEach(temp => {
-        let forecastDate = new Date(temp.Date);
-        if (queryDate.getDay() < todayDate.getDate()) {
-          output = "";
-          header = "";
-        } else if (queryDate <= forecastDate) {
-          header = `
+    console.log(DailyForecasts);
+
+    DailyForecasts.forEach(temp => {
+      let forecastDate = new Date(temp.Date);
+      if (queryDate.getDate() < todayDate.getDate()) {
+        output = "";
+        header = "";
+      } else if (queryDate.getDate() <= forecastDate.getDate()) {
+        header = `
             <div class="container">
                 <div class="city">
                     <h1 class="city-name">
@@ -98,10 +100,10 @@ class WeatherApp {
                 </div>
             </div>`;
 
-          output += `
+        output += `
             <div class="forecast">
                 <div class="box">
-                    <span class="day"> ${this.findDate(temp.Date)}  </span>    
+                    <span class="day"> ${this.findDate(temp.Date)} </span>    
                     <div class="temp">
                         <span class="icon">
                         <img src='https://apidev.accuweather.com/developers/Media/Default/WeatherIcons/${
@@ -114,24 +116,21 @@ class WeatherApp {
                             <div class="temperature">
                                 <span class="high">${
                                   temp.Temperature.Maximum.Value
-                                }</span> /
+                                }°</span> /
                                 <span class="low">${
                                   temp.Temperature.Minimum.Value
-                                }</span>
-                                F
+                                }° F</span>
+                                
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             `;
-        }
-      });
-      document.querySelector(".days").innerHTML = output;
-      document.querySelector(".city").innerHTML = header;
-    } catch (err) {
-      console.log(err);
-    }
+      }
+    });
+    document.querySelector(".days").innerHTML = output;
+    document.querySelector(".city").innerHTML = header;
   };
 
   findDate = date => {
