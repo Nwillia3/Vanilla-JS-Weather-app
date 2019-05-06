@@ -20,6 +20,7 @@ body {
 
 .days {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   flex-direction: row;
   padding: 10px;
@@ -44,7 +45,9 @@ body {
 .day {
   background-color: #6666ff;
   color: white;
-  font-size: 20px;
+  font-size: 16px;
+  padding: 5px 7px;
+  display: flex;
 }
 
 .icon {
