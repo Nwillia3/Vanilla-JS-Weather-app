@@ -1,14 +1,4 @@
-// const apiKey1 = "epKmq3cQ3bprIfyIrs5s8EC9wbUdPwtt"; // mines cant use on 5/2
-// const apiKey2 = "wJzJStEhgnn6wSVdxvK56XpvFE4sYeoC"; //movables
-// const apiKey3 = "K1Qex3tz0sk7UEdthlpGcHaVE5usimvY"; //mines cant use on 5/2
-// const apiKey4 = "oecMPG3nzJaOiiDZwD9bVZArAMVGK0NM"; //  mines
-// const apiKey5 = "lDT5Ka1ymuq0o1xOaJbO7UGJmKTkPnG4"; // mines
-
-const apiKey1 = config.APIKEY1;
-const apiKey2 = config.APIKEY2;
-const apiKey3 = config.APIKEY3;
-const apiKey4 = config.APIKEY4;
-const apiKey5 = config.APIKEY5;
+import { key1 } from "./config.js";
 
 const proxy = "https://cors-anywhere.herokuapp.com/";
 
@@ -36,7 +26,7 @@ class WeatherApp {
 
   getCityValues = async () => {
     let params = this.getUrlParams();
-    let url = `http://dataservice.accuweather.com/locations/v1/postalcodes/search?apikey=${apiKey5}&q=${
+    let url = `http://dataservice.accuweather.com/locations/v1/postalcodes/search?apikey=${key1}&q=${
       params.zip
     }`;
 
@@ -53,7 +43,7 @@ class WeatherApp {
     const key = await this.getCityValues();
     const api = `${proxy}http://dataservice.accuweather.com/forecasts/v1/daily/5day/${
       key.cityToken
-    }?apikey=${apiKey5}
+    }?apikey=${key1}
       `;
     return api;
   };
@@ -137,14 +127,15 @@ class WeatherApp {
         if (isNaN(queryDate.getDate())) {
           console.log("please enter a valid date");
           output = "";
-          header = "";
+          header =
+            "Please provide a zipcode param in the url... i.e ?zipcpde=10010";
           console.log("empty1");
         } else if (queryDate.getDate() <= forecastDate.getDate()) {
           header = `
                   <div class="container">
                       <div class="city">
                           <h1 class="city-name">
-                          WEATHER FORECAST FOR 
+                          Weather Forecast for
                           <span> ${cityName.cityName}</span>
                           </h1>
                       </div>
